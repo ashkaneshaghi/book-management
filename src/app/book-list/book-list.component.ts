@@ -4,7 +4,12 @@ import { Observable } from 'rxjs';
 import { AppState } from '../app.state';
 import { Book } from '../models/book';
 import { Store, select } from '@ngrx/store';
-import { AddBook, RemoveBook } from '../books/book.actions';
+import {
+    AddBook,
+    RemoveBook,
+    AddBookSuccess,
+    RemoveBookSuccess
+} from '../books/book.actions';
 
 @Component({
     selector: 'app-book-list',
@@ -23,9 +28,11 @@ export class BookListComponent {
 
     addBook(id: string, title: string, author: string) {
         this.store.dispatch(AddBook({ id, title, author }));
+        //this.store.dispatch(AddBook({ id, title, author }));
     }
 
     removeBook(bookId: string) {
         this.store.dispatch(RemoveBook({ bookId }));
+        //this.store.dispatch(RemoveBook({ bookId }));
     }
 }

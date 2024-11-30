@@ -13,4 +13,10 @@ export class BookService {
         // interactions with backend code
         return of(book);
     }
+
+    removeBook(bookId: string): Observable<string> {
+        console.log('THIS IS BOOK ID: ', bookId);
+        // interactions with backend code StatusCode = 204 (Deleted)
+        return of(bookId);
+    }
 }

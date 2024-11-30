@@ -1,6 +1,13 @@
 import { createReducer, on } from "@ngrx/store";
-import { AddBook, RemoveBook, AddBookSuccess, AddBookFailure } from "./book.actions";
 import { Book } from "../models/book";
+import {
+    AddBook,
+    RemoveBook,
+    AddBookSuccess,
+    AddBookFailure,
+    RemoveBookSuccess,
+    RemoveBookFailure
+} from "./book.actions";
 
 export const initialState: Book[] = [];
 
@@ -12,5 +19,10 @@ export const BookReducer = createReducer(
         console.error('ERROR: ' + JSON.stringify(error));
         return state;
     }),
-    on(RemoveBook, (state, { bookId }) => state.filter(book => book.id != bookId))
+    on(RemoveBook, (state, { bookId }) => { return state }),
+    on(RemoveBookSuccess, (state, { bookId }) => state.filter(book => book.id != bookId)),
+    on(RemoveBookFailure, (state, { error }) => {
+        console.error('ERROR IN REMOVE BOOK', JSON.stringify(error));
+        return state;
+    })
 );

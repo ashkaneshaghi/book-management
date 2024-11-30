@@ -9,6 +9,8 @@ import { BookListComponent } from './book-list/book-list.component';
 import { AppState } from './app.state';
 import { StoreModule } from '@ngrx/store';
 import { BookReducer } from './books/book.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BookEffects } from './books/book.effects';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,8 @@ import { BookReducer } from './books/book.reducer';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        StoreModule.forRoot<AppState>({ book: BookReducer })
+        StoreModule.forRoot<AppState>({ book: BookReducer }),
+        //EffectsModule.forRoot([BookEffects]) // Throws error on importing the effects (????)
     ],
     providers: [],
     bootstrap: [AppComponent]
